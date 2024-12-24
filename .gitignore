@@ -1,0 +1,14 @@
+
+AppData/
+NTUSER.*
+ntuser.*
+*.DAT
+*.LOG*
+node_modules/
+terraform.tfstate
+terraform.tfstate.backup
+.terraform/
+package-lock.json
+.vscode/
+*.ini
+.bash_history

@@ -1,0 +1,25 @@
+trigger:
+  - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: UseNode@1
+    inputs:
+      version: '14.x'
+
+  - script: |
+      npm install
+      npm test
+    displayName: 'Install dependencies and run tests'
+
+  - task: AzureCLI@2
+    inputs:
+      azureSubscription: '<YOUR_SERVICE_CONNECTION>'
+      scriptType: 'bash'
+      scriptLocation: 'inlineScript'
+      inlineScript: |
+        az webapp deploy --name nodejs-app-service --resource-group nodejs-app-rg --src-path .
+    displayName: 'Deploy to Azure App Service'
+
